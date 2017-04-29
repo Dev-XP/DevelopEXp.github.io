@@ -1,3 +1,15 @@
+#4
+
+So I was going to make STM executable, but then realized that I wanted a quick
+way to publish STM. I had to play around with a couple of configurations and end
+on a simple bash script that runs a `patch` run script and then runs `npm
+publish`. I had to do it seprately because prepublish took the version it was
+ran with rather than the new version created by the `patch` script. Oh well. So
+now I can publish quickly, which means the next session I will make it
+installable and executable. Time to learn how to setup a `bin` script for a node
+package.
+
+
 #3
 
 Third session was about setting up the first major product provided by DEX...
