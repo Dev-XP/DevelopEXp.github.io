@@ -1,0 +1,6 @@
+vim index.html
+VERSION=$(<.version)
+((++VERSION))
+git ci -am "Session #${VERSION}"
+rm .version
+echo ${VERSION} >> .version
