@@ -4,3 +4,4 @@ VERSION=$(<.version)
 rm .version
 echo ${VERSION} >> .version
 git ci -am "Session #${VERSION}"
+git push
