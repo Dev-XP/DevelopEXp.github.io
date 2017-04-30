@@ -1,3 +1,17 @@
+#8
+
+So I've started creating the STM CLI. First thing first is setting up commander.
+I also realized that I need to regularly compile my ES6 code into an executable
+local STM, so I'm working on setting up a Gulp file now so that I can have my
+changes be watched and automatically compiled into an executable and I'll
+symlink the executable in the root directory so it is quick to test things
+manually. Considering this first portion is just CLI options as input I don't
+think I'll want automated testing for this, but when those settings get passed
+into the inquirer portion which will handle prompting then I probably want to
+look into something automated around there for filling in like defaults that
+weren't provided by CLI options. We'll see. Time for the next break.
+
+
 #7
 
 Day #2 - starting by planning out the first STM command which will be `stm
