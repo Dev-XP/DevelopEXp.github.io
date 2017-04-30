@@ -1,3 +1,17 @@
+#7
+
+Day #2 - starting by planning out the first STM command which will be `stm
+init`. This will create the project directory structure of "services". "tools",
+and "modules" and store the project settings in "./.root.json". These settings
+exist to provide a path for idempotency as well as an easy upgrade path so
+re-running a command can be re-run with past settings. This will be a common
+pattern for all code generation in STM. I also did some research into how I
+expect to do testing for STM so it remains stable. This is essentially a more
+specific "Slush" so I've been looking into testing for gulp/slush. Hopefully
+using a stream system with RxJS will make testing a bit easier. We'll see in the
+second session of the day.
+
+
 #6
 
 Spent some time writing down initial details on STM and planning where to go
