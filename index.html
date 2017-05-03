@@ -1,3 +1,19 @@
+#14
+
+So I'm dumb. I tried to create the program stream using a Subject instead of
+just creating an Observable. So now that I've figured that out I can actually
+move forward. I refactored the program into an observable now so I can create
+command streams that spin off of that and merge them all together. Making
+progress. I setup the help stream that catches when default is sent. The goal is
+to figure out the best way to represent commands in a similar way as
+representing a service in an HTTP system and then using that representation to
+build subcommand around it. The CLI tool acts as an API gateway and the
+subcommands are individual services. The arguments are the request parameters so
+they can run through the same request validation as an HTTP request. Eventually
+I want to see STM building itself... lol. But for now I've got to stop... gotta
+go get some work done for my real job now. I'll tackle more soon.
+
+
 #13
 
 So my brain hurts. Trying to figure out the best way to turn the entire program
