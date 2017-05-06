@@ -1,3 +1,15 @@
+#15
+
+So while using Commander I discovered an unforgiving issue. Apparently if you
+have an argument that matches any of the object properties of the commander
+object, then you break the Commander object because your argument will replace
+that property on Commander instead of being namespaced. There was a suggestion
+to move to argsparse, so I'll take a look at that. Actually just looked at
+dashdash and I like that he does an analysis of other CLI parsers and has much
+better features like bash completion integration and what not... looks solid.
+Good to be back and working on STM again after a busy crazy work week.
+
+
 #14
 
 So I'm dumb. I tried to create the program stream using a Subject instead of
