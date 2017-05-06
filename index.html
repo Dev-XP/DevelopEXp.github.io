@@ -1,3 +1,20 @@
+#16
+
+So I'm not satisfied with dashdash or args parse honestly. dashdash set my
+expectations for something like bash completion and clean type coercion, but I'm
+just not satisfied. I have to walk on this. I was thinking about just using
+minimist, but minimist doesn't have nice features like generated help, and what
+not. I feel like there should really be an easier way for this, there has got to
+be something I'm missing. Do I need to write my own CLI module built in Rx? It's
+possible. Since I'm considering everything is a stream. I could use minimist to
+parse our the arguments, but design my own system around subcommands, and then
+pipe minimist results into a generated help, perhaps? Part of the problem with
+minimist is the implicit arguments rather than explicit. I want explicit that
+matches the "services" request parameters. Which I sort of liked commander for.
+It's all dumb and just doesn't make sense. I'll figure something out. Time for a
+walk to clear my mind.
+
+
 #15
 
 So while using Commander I discovered an unforgiving issue. Apparently if you
