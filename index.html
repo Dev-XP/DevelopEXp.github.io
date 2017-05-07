@@ -1,3 +1,48 @@
+#18
+
+So I setup the initial observable stream and have setup the command parsing with
+`minimist` and setup detecting the `sub-command` by grabbing the first unlabeled
+parameter found by minimist and extracting that from the args as a sub-command.
+I've also pulled that process out into a separate command parser so that command
+parser can be re-used. The command parser will accept a program specification
+which will include the sub-commands and their options and requirements and
+stuff. So with that I'll start working on the prompting system that will check
+for required parameters and if they don't exist then prompting for them. I also
+need to start segmenting the smaller parts of the program, like parsing with
+minimist. I want to be able to use the program spec to customize how `minimist`
+takes in arguments. For example if a single letter argument is set to a
+variable, but the program spec says it is a boolean, then it should extract that
+into unlabeled and set the argument to true. Little things like that. Should be
+easy. I want to be able to provide a full blown command parser, but I also want
+to give people the option to construct their own command parser with each
+individual part so I'll be exporting all of them in the module. Should be fairly
+powerful.
+
+
+#Pre-18
+
+So between yesterday and today, I've been considering how to approach building
+my own CLI processor in the form of a stream. In order to do that I've had to
+think about breaking it up into multiple parts. Some of those parts could be
+covered with other tech to make this easier. The first part is parsing out all
+of the arguments. This is something that can be done by `minimist`. Next would
+be to determine if a subcommand is trying to be run by analyzing the first of
+the non-marked arguments (we are making the assumption of a single subcommand
+per execution). Then when we know the command we can check against
+required/optional parameters for that command, and if we are not running in
+detached mode we prompt for each one. If we already have all requirements, don't
+prompt for optionals, if we don't have all requirements when prompting for
+required, also prompt for optionals. Once we have all the parameters then we
+need to call the actual service with it. The service will yield data to intruct
+on a side effect, then that data will be passed to the appropriate side effect
+(be it file writing, logging, etc.). At any point if requirements are not met
+and it "fails", error out and the error will result in showing the help for the
+detected subcommand otherwise it will show it for the whole program.
+
+I think I can work with that design. Now to start writing it. I won't have many
+sessions today, probably only one. But starting is good.
+
+
 #17
 
 So it's ridiculous, but I'm working on designing a new CLI processor based on
