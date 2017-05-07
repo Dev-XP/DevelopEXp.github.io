@@ -1,0 +1,5 @@
+vim index.html
+VERSION=$(<.version)
+((++VERSION))
+git ci -am "Session #Pre-${VERSION}"
+git push
