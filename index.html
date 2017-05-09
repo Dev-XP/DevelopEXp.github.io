@@ -1,3 +1,18 @@
+#22
+
+This is ridiculous. So I have attempted to tie in testing. At first using my own
+library `rxt`. But I have discovered that I built `rxt` to use RxJS 5. However,
+I have to use RxJS 4 because of Inquirer. And apparently you can't `mergeMap`
+from an RxJS 4 Observable into an RxJS 5 Observable... which is a painful
+problem. So I'm stuck. I tried to then setup testing using Ava, hoping that it
+was capable of handling things, but apparently not the case at all. Same
+problem that Ava uses RxJS 5, not 4. So `Inquirer` is the problem... what does
+this mean? Well sounds like I need to write my own damn prompt library too that
+supports RxJS 5. Luckily my needs right now aren't as drastic as what `Inquirer`
+supplies, so perhaps it won't be so bad? It is just accepting `stdin` right?
+**sigh** of course this can't be easy. Why would it be easy?
+
+
 #Pre-22
 
 So I was hoping to get around to a fourth session today, but got sucked into
