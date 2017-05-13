@@ -1,3 +1,18 @@
+#25
+
+So I've added logging silencing so I can run tests properly. I was trying to
+find a clean way to run multiple child processes of my testing framework, but it
+won't support the pretty printing that I created with `rxt` so I may need to
+spend some time updating `rxt` with a proper test runner that will handle a
+large number of test files at the same time. It shouldn't be too bad, but we
+shall see. Until then, the next thing I'll do is focus on adding testing for the
+command parser to make sure that it is properly handling the parsing as I
+expect. So that will be nice to have. I might add a should.js rule to have
+prettier error printing when it is wrong and also not have to submit a full
+object to the deepEqual assertion. Off for a break, probably one more before I
+tackle breakfast and then start moving.
+
+
 #24
 
 That was an intense session actually. Lots of writing... my wrist hurts since I
