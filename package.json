@@ -13,7 +13,8 @@
         "lodash": "^4.17.4",
         "minimist": "^1.2.0",
         "rxjs": "^5.4.0",
-        "vinyl": "^2.0.2"
+        "vinyl": "^2.0.2",
+        "vinyl-fs": "^2.4.4"
     },
     "babel": {
         "presets": [

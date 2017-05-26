@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import Vinyl from 'vinyl';
+import vfs from 'vinyl-fs';
 import minimist from 'minimist';
 import inquirer from 'inquirer';
 import { Observable } from 'rxjs';
@@ -14,8 +15,8 @@ const discoverSubCommand = stream => stream
 
 const convertToFile = stream => stream
     .map(data => (new Vinyl({
-        base: `./${data.publish ? 'blog' : 'drafts'}/`,
-        path: `./${data.publish ? 'blog' : 'drafts'}/${data.name}.json`,
+        base: `./${data.publish ? 'posts' : 'drafts'}/`,
+        path: `./${data.publish ? 'posts' : 'drafts'}/${data.name}.json`,
         contents: new Buffer(JSON.stringify(data, null, 4)),
     })));
 
@@ -53,4 +54,6 @@ Observable
         .fromPromise(inquirer.prompt(prompts))
     )
     .let(convertToFile)
-    .subscribe(console.log);
+    .subscribe(file => {
+        vfs.dest(file.dirname).write(file, 'utf-8');
+    });
