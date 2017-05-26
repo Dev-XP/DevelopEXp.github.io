@@ -41,15 +41,20 @@ const prompts = {
     ],
 };
 
-const getPrompts = stream => stream
-    .filter(service => _.includes(_.keys(prompts), service.command))
-    .map(service => prompts[service.command]);
+const blogService = request => Observable
+    .of(request)
+    .filter(service => service.command === 'blog')
+    .map(service => prompts.blog);
 
 Observable
     .of(process.argv.slice(2))
     .map(minimist)
     .let(discoverSubCommand)
-    .let(getPrompts)
+    .mergeMap(request => Observable
+        .merge(
+            blogService(request)
+        )
+    )
     .mergeMap(prompts => Observable
         .fromPromise(inquirer.prompt(prompts))
     )
