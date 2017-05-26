@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import Vinyl from 'vinyl';
 import minimist from 'minimist';
 import inquirer from 'inquirer';
 import { Observable } from 'rxjs';
@@ -10,6 +11,13 @@ const discoverSubCommand = stream => stream
             _: args._.slice(1),
         }),
     }));
+
+const convertToFile = stream => stream
+    .map(data => (new Vinyl({
+        base: `./${data.publish ? 'blog' : 'drafts'}/`,
+        path: `./${data.publish ? 'blog' : 'drafts'}/${data.name}.json`,
+        contents: new Buffer(JSON.stringify(data, null, 4)),
+    })));
 
 const prompts = {
     blog: [
@@ -44,4 +52,5 @@ Observable
     .mergeMap(prompts => Observable
         .fromPromise(inquirer.prompt(prompts))
     )
+    .let(convertToFile)
     .subscribe(console.log);
