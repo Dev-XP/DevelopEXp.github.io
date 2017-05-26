@@ -41,7 +41,7 @@ Observable
     .map(minimist)
     .let(discoverSubCommand)
     .let(getPrompts)
-    .subscribe(prompts => inquirer
-        .prompt(prompts)
-        .then(console.log)
-    );
+    .mergeMap(prompts => Observable
+        .fromPromise(inquirer.prompt(prompts))
+    )
+    .subscribe(console.log);
