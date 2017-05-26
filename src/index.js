@@ -33,6 +33,7 @@ const prompts = {
 };
 
 const getPrompts = stream => stream
+    .filter(service => _.includes(_.keys(prompts), service.command))
     .map(service => prompts[service.command]);
 
 Observable
