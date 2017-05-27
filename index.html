@@ -1,3 +1,24 @@
+#31
+
+Another day of fun. I'm out in the cold cold morning of Bend, OR at Drake Park
+waiting for a sunrise, but I may be in the wrong place. I'm also in short
+sleeves and shorts... lol. Anyway, this morning I started playing around with
+how to organize the side effects... something I'll have to figure out how to
+handle with STM. The main thing is trying to get prompts and retries working. I
+may drop the focus on trying to make drafts work for now and get back to
+focusing on STM as that has given me some ideas. I think I'll head back to the
+hotel and take a shower to think about how I'm going to properly handle this.
+Basically if a service doesn't have the right request parameters it can respond
+with a `400 BAD REQUEST` with a side effect to prompt for the required
+parameters, or one parameter at a time... or something. And after prompting it
+should retry with the new adjusted parameters. I may want to return the previous
+parameters so that the prompt side effect handler has defaults to fill in or at
+least extends those with the new prompt answers to retry the request. I'll think
+on that. For now... my hands are a bit freezing and I may just stick around a
+little bit to just barely catch the sunrise. It just doesn't look like I'm in a
+good position to catch it on this bench.
+
+
 #30
 
 I'm now able to write blog posts and drafts. The next thing I would want would

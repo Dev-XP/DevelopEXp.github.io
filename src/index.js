@@ -25,7 +25,7 @@ const prompts = {
         {
             name: 'post',
             message: 'Write the blog post...',
-            type: 'editor',
+            type: 'input',
         },
         {
             name: 'name',
@@ -47,6 +47,7 @@ const blogService = request => Observable
     .map(service => ({
         sideEffects: [
             { prompts: prompts.blog },
+            { prompts: prompts.blog },
         ],
     }));
 
@@ -66,7 +67,8 @@ const handleSideEffects = response => Observable
         .merge(
             handlePrompts(sideEffect),
         )
-    );
+    )
+    .do(console.log);
 
 const parser = new Subject();
 parser
