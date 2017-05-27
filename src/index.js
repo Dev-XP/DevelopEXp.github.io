@@ -3,7 +3,7 @@ import Vinyl from 'vinyl';
 import vfs from 'vinyl-fs';
 import minimist from 'minimist';
 import inquirer from 'inquirer';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 const discoverSubCommand = stream => stream
     .map(args => ({
@@ -68,8 +68,8 @@ const handleSideEffects = response => Observable
         )
     );
 
-Observable
-    .of(process.argv.slice(2))
+const parser = new Subject();
+parser
     .map(minimist)
     .let(discoverSubCommand)
     .mergeMap(request => Observable
@@ -82,3 +82,5 @@ Observable
     .subscribe(file => {
         vfs.dest(file.dirname).write(file, 'utf-8');
     });
+
+parser.next(process.argv.slice(2));
