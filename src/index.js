@@ -45,7 +45,9 @@ const blogService = request => Observable
     .of(request)
     .filter(service => service.command === 'blog')
     .map(service => ({
-        prompts: prompts.blog,
+        sideEffects: [
+            { prompts: prompts.blog },
+        ],
     }));
 
 const handlePrompts = response => Observable
@@ -54,6 +56,16 @@ const handlePrompts = response => Observable
     .map(r => r.prompts)
     .mergeMap(prompts => Observable
         .fromPromise(inquirer.prompt(prompts))
+    );
+
+const handleSideEffects = response => Observable
+    .of(response)
+    .filter(r => r.sideEffects)
+    .concatMap(r => r.sideEffects)
+    .mergeMap(sideEffect => Observable
+        .merge(
+            handlePrompts(sideEffect),
+        )
     );
 
 Observable
@@ -65,11 +77,7 @@ Observable
             blogService(request)
         )
     )
-    .mergeMap(response => Observable
-        .merge(
-            handlePrompts(response),
-        )
-    )
+    .mergeMap(handleSideEffects)
     .let(convertToFile)
     .subscribe(file => {
         vfs.dest(file.dirname).write(file, 'utf-8');
