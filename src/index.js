@@ -44,7 +44,17 @@ const prompts = {
 const blogService = request => Observable
     .of(request)
     .filter(service => service.command === 'blog')
-    .map(service => prompts.blog);
+    .map(service => ({
+        prompts: prompts.blog,
+    }));
+
+const handlePrompts = response => Observable
+    .of(response)
+    .filter(r => r.prompts)
+    .map(r => r.prompts)
+    .mergeMap(prompts => Observable
+        .fromPromise(inquirer.prompt(prompts))
+    );
 
 Observable
     .of(process.argv.slice(2))
@@ -55,8 +65,10 @@ Observable
             blogService(request)
         )
     )
-    .mergeMap(prompts => Observable
-        .fromPromise(inquirer.prompt(prompts))
+    .mergeMap(response => Observable
+        .merge(
+            handlePrompts(response),
+        )
     )
     .let(convertToFile)
     .subscribe(file => {
