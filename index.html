@@ -1,3 +1,16 @@
+#35
+
+Added tests for grabbing request parameters for a command and realized that the
+amount of data that I was passing into the command parser was ridiculous and
+unnecessary. I was passing this huge object when I only really needed a few
+parts of that object. So I changed the interface of the command parser to only
+accept the parts that were actually needed and I'll write a converter to morph
+the large services object into the needed interface for the command parser.
+Testing really helps determine what is the best route for things. Still have
+more parts to test and refactor, like adding required parameters into the mix. I
+might have to do error handling in `rxt`. I really hope I don't have to.
+
+
 #34
 
 Alright so I've started filling out tests... but now I have to remember all the
