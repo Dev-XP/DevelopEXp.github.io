@@ -4,14 +4,7 @@ import vfs from 'vinyl-fs';
 import minimist from 'minimist';
 import inquirer from 'inquirer';
 import { Observable, Subject } from 'rxjs';
-
-const discoverSubCommand = stream => stream
-    .map(args => ({
-        command: args._[0] || '',
-        params: _.extend(args, {
-            _: args._.slice(1),
-        }),
-    }));
+import discoverSubCommand from '@devex/discover-subcommand';
 
 const convertToFile = stream => stream
     .map(data => (new Vinyl({
@@ -46,7 +39,6 @@ const blogService = request => Observable
     .filter(service => service.command === 'blog')
     .map(service => ({
         sideEffects: [
-            { prompts: prompts.blog },
             { prompts: prompts.blog },
         ],
     }));

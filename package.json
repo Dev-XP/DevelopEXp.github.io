@@ -7,6 +7,7 @@
     "author": "Raymond Benefield <Raymond.Benefield@gmail.com>",
     "license": "MIT",
     "dependencies": {
+        "@devex/discover-subcommand": "^0.0.2",
         "babel-cli": "^6.24.1",
         "babel-preset-es2015": "^6.24.1",
         "inquirer": "^3.0.6",
